@@ -6,9 +6,16 @@
     <title>Event Registration</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/app.css" />
+    <script src="/lib/jquery.min.js"></script>
+    <script src="/lib/underscore-1.4.4.min.js"></script>
+    <script src="/lib/bootstrap.min.js"></script>
+    <script src="/lib/angular/angular.js"></script>
+    <script src="/lib/angular/angular-sanitize.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/controllers/EventController.js"></script>
 </head>
 
-<body>
+<body ng-cloak>
     <div class="container">
         <div class="navbar">
             <div class="navbar-inner">
@@ -21,9 +28,17 @@
             <img ng-src="{{event.imageUrl}}" alt="{{event.name}}" />
             <div class="row">
                 <div class="spann11">
-                    <h2>{{event.name}}</h2>
+                    <h2>{{event.name | uppercase}}</h2>
                 </div>
             </div>
+
+            <button class="btn" ng-disabled="buttonDisabled">Disabled</button>
+
+            <div ng-bind-html-unsafe="snippet">some title</div>
+            <div ng-bind-html="snippet">some title</div>
+
+            <h2 ng-show="bool">show this</h2>
+            <h2 ng-hide="bool">hide this</h2>
             <div class="row">
                 <div class="span3">
                     <div>
@@ -43,8 +58,19 @@
             <hr />
             <h3>Sessions</h3>
             <ul class="thumbnails">
-                <li ng-repeat="session in event.sessions">
+                <li ng-repeat="session in event.sessions | orderBy:sortOrder">
                     <div class="row session">
+                        <div class="span0 well votingWidget">
+                            <div class="votingButton" ng-click="upVoteSession(session)">
+                                <i class="icon-chevron-up icon-white"></i>
+                            </div>
+                            <div class="badge badge-inverse">
+                                <div>{{session.upvoteCount}}</div>
+                            </div>
+                            <div class="votingButton" ng-click="downVoteSession(session)">
+                                <i class="icon-chevron-down"></i>
+                            </div>
+                        </div>
                         <div class="well span9">
                             <h4 class="well-title">{{session.name}}</h4>
                             <h6 style=margin-top:-10px>{{session.creatorName}}</h6>
@@ -58,13 +84,6 @@
             </ul>
         </div>
     </div>
-
-    <script src="/lib/jquery.min.js"></script>
-    <script src="/lib/underscore-1.4.4.min.js"></script>
-    <script src="/lib/bootstrap.min.js"></script>
-    <script src="/lib/angular/angular.js"></script>
-    <script src="/js/app.js"></script>
-    <script src="/js/controllers/EventController.js"></script>
 </body>
 
 </html>
