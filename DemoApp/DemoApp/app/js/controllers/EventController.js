@@ -7,7 +7,7 @@ eventsApp.controller('EventController',
         $scope.mystyle = { color: 'red' };
         $scope.myclass = "blue";
         $scope.buttonDisabled = true;
-        $scope.sortOrder = '-upvoteCount';
+        $scope.sortOrder = 'name';
         $scope.event = {
             name: 'Event Name',
             date: '2017/11/23',
@@ -22,15 +22,15 @@ eventsApp.controller('EventController',
                 {
                     name: 'Session 1',
                     creatorName: 'Creator Name 1',
-                    duration: 'Duration 1',
+                    duration: 1,
                     level: 'Level 1',
-                    abstract: 'Abstract 1',
+                    abstract: 'Abstract 1, Level 2',
                     upvoteCount: 0
                 },
                 {
                     name: 'Session 2',
                     creatorName: 'Creator Name 2',
-                    duration: 'Duration 2',
+                    duration: 2,
                     level: 'Level 2',
                     abstract: 'Abstract 2',
                     upvoteCount: 0
@@ -38,7 +38,7 @@ eventsApp.controller('EventController',
                 {
                     name: 'Session 3',
                     creatorName: 'Creator Name 3',
-                    duration: 'Duration 3',
+                    duration: 3,
                     level: 'Level 3',
                     abstract: 'Abstract 3',
                     upvoteCount: 0
